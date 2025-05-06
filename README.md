@@ -1,5 +1,12 @@
 ![Build project](https://github.com/netty/netty/workflows/Build%20project/badge.svg)
 
+# DKU release
+Steps to release the Forked netty version
+- Update the release version: `find . -type f -exec sed -i 's/4.1.100.Final/4.1.100.Final_dss0/g' {} +` (change `4.1.100.Final` to the release to change)
+- Build and deploy locally: `mvn -DskipTests -Dcheckstyle.skip -DaltDeploymentRepository=snapshot-repo::default::file:`pwd`/local-repo  deploy`
+- Copy the content of `local-repo` to https://downloads.dataiku.com/studio-build/maven2/
+- Update the build depedencies: build.gradle and maybe hadoop
+
 # Netty Project
 
 Netty is an asynchronous event-driven network application framework for rapid development of maintainable high performance protocol servers & clients.
